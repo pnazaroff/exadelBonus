@@ -21,6 +21,8 @@ RUN npm install -g @angular/cli && npm cache clean --force
 USER root
 #COPY exadelBonus .
 COPY . .
+
+RUN sed -i 's/https://exadel-bonus-plus-app.herokuapp.com/'$BACKEND'/ ./src/environments/environment.prod.ts 
 RUN npm install && ng build --prod --output-path=dist
 
 # Развертываем приложение Angular на NGINX
